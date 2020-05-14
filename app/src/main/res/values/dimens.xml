@@ -2,4 +2,9 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="detail_image_height">200dp</dimen>
+    <dimen name="progress_bar_dimen">42dp</dimen>
+    <dimen name="tv_padding_top">4dp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_sandwich_name">24sp</dimen>
 </resources>

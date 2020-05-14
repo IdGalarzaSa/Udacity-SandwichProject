@@ -3,6 +3,7 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -113,24 +114,16 @@ public class DetailActivity extends AppCompatActivity {
         List<String> alsoKnownAsList = sandwich.getAlsoKnownAs();
         if (alsoKnownAsList.size() > 0) {
             showAlsoKnownInformation();
-            String alsoKnownString = "";
-            for (String item : alsoKnownAsList) {
-                alsoKnownString = alsoKnownString.concat("- " + item + "\n");
-            }
-            // Remove the last "\n"
-            alsoKnownString = alsoKnownString.substring(0, alsoKnownString.length() - 2);
+            // the "- " is for the first item of the list
+            String alsoKnownString = "- " + TextUtils.join("\n- ", alsoKnownAsList);
             alsoKnownAsTv.setText(alsoKnownString);
         } else {
             hideAlsoKnownInformation();
         }
 
         // Ingredients TextView
-        String ingredientsString = "";
-        for (String item : sandwich.getIngredients()) {
-            ingredientsString = ingredientsString.concat("- " + item + "\n");
-        }
-        // Remove last \n
-        ingredientsString = ingredientsString.substring(0, ingredientsString.length() - 2);
+        // the "- " is for the first item of the list
+        String ingredientsString = "- " + TextUtils.join("\n - ", sandwich.getIngredients());
         ingredientsTv.setText(ingredientsString);
 
         // Origin TextView

@@ -14,6 +14,15 @@ import java.util.List;
 public class JsonUtils {
     private static final String TAG = "JSON_UTILS";
 
+    // JSON constants
+    private static final String NAME ="name";
+    private static final String MAIN_NAME = "mainName";
+    private static final String ALSO_KNOWN_AS = "alsoKnownAs";
+    private static final String PLACE_OF_ORIGIN = "placeOfOrigin";
+    private static final String DESCRIPTION = "description";
+    private static final String IMAGE = "image";
+    private static final String INGREDIENTS = "ingredients";
+
     public static Sandwich parseSandwichJson(String json) {
 
         // Validate the param
@@ -26,24 +35,24 @@ public class JsonUtils {
             JSONObject sandwichData = new JSONObject(json);
 
             // Get the object "name" from the json file
-            JSONObject name = sandwichData.getJSONObject("name");
+            JSONObject name = sandwichData.optJSONObject(NAME);
 
-            String mainName = name.getString("mainName");
+            String mainName = name.optString(MAIN_NAME);
 
             List<String> alsoKnownAsList = new ArrayList<String>();
-            JSONArray othersNames = name.getJSONArray("alsoKnownAs");
+            JSONArray othersNames = name.optJSONArray(ALSO_KNOWN_AS);
             for (int i = 0; i < othersNames.length(); i++) {
-                alsoKnownAsList.add(othersNames.getString(i));
+                alsoKnownAsList.add(othersNames.optString(i));
             }
 
-            String placeOfOrigin = sandwichData.getString("placeOfOrigin");
-            String description = sandwichData.getString("description");
-            String image = sandwichData.getString("image");
+            String placeOfOrigin = sandwichData.optString(PLACE_OF_ORIGIN);
+            String description = sandwichData.optString(DESCRIPTION);
+            String image = sandwichData.optString(IMAGE);
 
             List<String> ingredientsList = new ArrayList<String>();
-            JSONArray sandwichIngredients = sandwichData.getJSONArray("ingredients");
+            JSONArray sandwichIngredients = sandwichData.optJSONArray(INGREDIENTS);
             for (int i = 0; i < sandwichIngredients.length(); i++) {
-                ingredientsList.add(sandwichIngredients.getString(i));
+                ingredientsList.add(sandwichIngredients.optString(i));
             }
 
             Sandwich myDeliciousSandwich = new Sandwich(mainName, alsoKnownAsList, placeOfOrigin,
